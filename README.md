@@ -17,25 +17,28 @@ By : **Triston Stuart**
 
 ### Initialize
 ----------------------------------------------------------------------------------------------------------------------------------------
+
 Example :
-  load({
-      server : "127.0.0.1:350/c1s1",
-      handle : {
-          identify : {
-              sucess : function(server){
-                  document.getElementById('m').innerHTML += "<br> Sucessfully Identified With Server";
-              },
-              failure : function(server){
-                  document.getElementById('m').innerHTML += "<br> Not Identified With Server :(";
-                  document.getElementById('m').innerHTML += "<br> Closing Connection";
-                  server.close();
-              }
-          },
-          ping : function(ping){
-              document.getElementById('a').innerHTML = "Ping : " + ping;
-          }
-      }
-  });
+
+  load({ <br />
+      server : "127.0.0.1:350/c1s1", <br />
+      handle : { <br />
+          identify : { <br />
+              sucess : function(server){ <br />
+                  document.getElementById('m').innerHTML += "<br> Sucessfully Identified With Server"; <br />
+              }, <br />
+              failure : function(server){ <br /> 
+                  document.getElementById('m').innerHTML += "<br> Not Identified With Server :("; <br />
+                  document.getElementById('m').innerHTML += "<br> Closing Connection"; <br />
+                  server.close(); <br />
+              } <br />
+          }, <br />
+          ping : function(ping){ <br />
+              document.getElementById('a').innerHTML = "Ping : " + ping; <br />
+          } <br />
+      } <br />
+  }); <br />
+	
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 Here's whats happening : 
