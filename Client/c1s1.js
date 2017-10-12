@@ -1,3 +1,5 @@
+// Will add comments to make more readable soon
+
 let ping = 0;
 
 function load(query){
