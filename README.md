@@ -1,4 +1,4 @@
-# C1S1
+# C1S1 (http://c1s1.tk)
 A Client to Server and Server to Client WebSocket Communicator
 
 By : **Triston Stuart**
