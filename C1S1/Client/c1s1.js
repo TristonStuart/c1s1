@@ -11,7 +11,7 @@ let ping = 0; // Global Ping
 
 // Load, main function, query is how to handle everything, check api file (/api/query.txt)
 function load(query){
-    
+
     console.log('C1S1 | Client - Side Javascript to Server Communicator') // Yay! it works
     console.log('C1S1 | Client Version : 1.0.1') // May add a version checker in the future
 
@@ -94,7 +94,7 @@ function load(query){
 
             if (data.event == "identify"){ // If its identify, process
 
-                if (data.try == "success"){ // If identification sucessfull
+                if (data.try == "success"){ // If identification successfull
 
                     console.log('C1S1 | Client is verified by server'); // Log
                     if (data.else){ // Pointless
@@ -104,7 +104,7 @@ function load(query){
                     }
                     if (query.handle.identify.success){// query handle if exists
 
-                        query.handle.identify.sucess(server);
+                        query.handle.identify.success(server);
 
                     }
 
