@@ -6,6 +6,8 @@ CCID's purpose is to allow people on the same WIFI to use Multiplayer/Multiuser 
 
 Identification :
 Clients can be identified by the CCID only on one session, rendering it useless for identifying users for stored data.
+CCID(s) will remain the same when being redirected to different server, allowing temporary user data to follow. (Read more on redirecting at /API/redirecting);
 
 Security :
-CCIDs could be manipulated and tampered with, server should check that 2 CCIDs cannot be on same server.
+CCIDs could be manipulated and tampered with, although this should have no affect on anything.
+Server should check that 2 CCIDs cannot be on same server to prevent user spoofing and accidental chance 2 clients pick same CCID.
