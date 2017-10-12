@@ -2,7 +2,7 @@ load({
     server : "72.223.112.19:350/c1s1",
     handle : {
         identify : {
-            sucess : function(server){
+            success : function(server){
                 document.getElementById('m').innerHTML += "<br> Sucessfully Identified With Server"
             },
             failure : function(server){
