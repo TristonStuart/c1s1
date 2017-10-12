@@ -1,1 +1,39 @@
 c1s1 API file (query)
+
+The query is the main processing of your application.
+
+The query contains information on how to handle every packet of data and event related to the client and server communication.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Example of how to initialize query :
+
+load({
+  handle : {
+    ping : function(ping){
+      document.getElementById('ping').innerHTML = "Ping : " + ping
+    }
+  }
+})
+
+Breakdown :
+When your application starts you must initialize load (/API/load.txt)
+You then need to include a parameter, the query.
+The query is an object with a set of steps.
+When the client receives a query request it will look to the query on what to do.
+The exact place it will look is handle.ping , if it finds it, it will execute the function giving the query its ping parameter.
+The query can then act on the information given, in this case setting the element 'ping' to 'Ping : (ping)'.
+Look to the example to see how this is executed by c1s1.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Query :
+{
+handle : {
+    ping : function (ping){},
+    identify : {
+      success : function(server){},
+      failure : function(server){}
+    }
+  }
+}
