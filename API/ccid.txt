@@ -1,0 +1,12 @@
+c1s1 api file (ccid)
+
+CCID - Client Communication Identification
+CCID's purpose is to allow people on the same wifi to use Multiplayer/Multiuser on the same server.
+
+
+Identifciation :
+Clients can be identified by the ccid only on one session, rendering it useless for identifying users for stored data.
+
+Security :
+CCIDs could be manipulated and tampered with, server should check that 2 CCIDs cannot be on same server.
+
