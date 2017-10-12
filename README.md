@@ -16,12 +16,10 @@ By : **Triston Stuart**
 ## API (CLIENT) : 
 
 ### Initialize
+----------------------------------------------------------------------------------------------------------------------------------------
 Example : 
-
   load({
-  
       server : "127.0.0.1:350/c1s1",
-      
       handle : {
       
           identify : {
@@ -53,6 +51,7 @@ Example :
       }
       
   });
+----------------------------------------------------------------------------------------------------------------------------------------
 
 Here's whats happening : 
 
@@ -61,3 +60,5 @@ You need to load c1s1.js first then your main javascript as your main will initi
 You call load, the c1s1 function and need to include and object.
 
 This object will include how to handle identification, pings, connects, disconnects, and will include the server.
+
+----------------------------------------------------------------------------------------------------------------------------------------
