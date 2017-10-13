@@ -8,11 +8,14 @@ By : **Triston Stuart**
 
 ## Status On Project :
 #### Client : 9% (ESTIMATE)
-#### Server : 0% (ESTIMATE)
-#### Version : (Alpha unfinished) : C 0.0.1 | S 0
+#### Server : 0% (DEFINITE) [lol]
+#### Client Version : (Alpha unfinished) 0.0.2
+#### Client Version : NOT STARTED
 
 ---------------------------------------------------------
 
 ## API :
 
 Read the API folder for how c1s1 handles everything.
+
+---------------------------------------------------------
