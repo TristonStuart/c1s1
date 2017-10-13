@@ -78,7 +78,14 @@ function load(query){
 
                 if (query.event.redirect == "c1s1"){// Handle by c1s1
 
+                    server.close();
+                    server = new WebSocket("ws://" + data.redirect.to)
+
                 }else if (query.event.redirect == "c1s1 & query"){// Handle by c1s1 and query
+
+                    query.handle.redirect(server, data.redirect)
+                    server.close();
+                    server = new WebSocket("ws://" + data.redirect.to)
 
                 }else if (query.event.redirect == "query"){// Handle by just query
 
