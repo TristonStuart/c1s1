@@ -32,9 +32,6 @@ function load(query){
     // Set server
     let server = new WebSocket('ws://' + query.server);
 
-    console.log('C1S1 | Establishing connection to server...') // Shit loggs
-    console.log('C1S1 | Sending Beggining Packets to server in 1 second')
-
     // Send ip and ccid
     function identify(){
 
@@ -46,7 +43,6 @@ function load(query){
 
         }
         server.send(JSON.stringify(packet)) // Send packet
-        console.log('C1S1 | Sent IP and CCID to server, waiting for a resposne') // More logs
 
     }
 
@@ -59,12 +55,6 @@ function load(query){
 
                 if (data.try == "success"){ // If identification successfull
 
-                    console.log('C1S1 | Client is verified by server'); // Log
-                    if (data.else){ // Pointless
-
-                        console.log('C1S1 | ' + data.else) // Got to delete this, no real point
-
-                    }
                     if (query.handle.identify.success){// query handle if exists
 
                         query.handle.identify.success(server);
@@ -72,9 +62,6 @@ function load(query){
                     }
 
                 }else{
-
-                    console.log('C1S1 | Error server cannot verify client, check reason') // Logs
-                    console.log('C1S1 ||| SERVER INFOR PACKET ||| =-= ' + data.reason); // Logs
 
                     if (query.handle.identify.failure){// query handle if exists
 
@@ -144,7 +131,6 @@ function load(query){
         }
         console.log('C1S1 | Stopping Processes, Conenction Closed'); //Logs
         clearInterval(constPing); // Stop constant pinging of server
-        console.log('C1S1 | Terminated Pinging'); //Logs
 
     }
 
