@@ -4,23 +4,18 @@
 // Comments will be removed in official release
 // Do not use source code in applications, use obbfuscated version to help prevent tampering. (Also obfuscate your query)
 
-
-// Anything outside load is global, allowing it to be accessed by anything
-// Not necessary as usually query can acess it and store it in a global variable
-let ping = 0; // Global Ping
-
 // Load, main function, query is how to handle everything, check api file (/api/query.txt)
 function load(query){
 
     console.log('C1S1 | Client - Side Javascript to Server Communicator') // Yay! it works
-    console.log('C1S1 | Client Version : 1.0.1') // May add a version checker in the future
+    console.log('C1S1 | Client Version : 1.0.2') // May add a version checker in the future
 
     // Generate a ccid, read about the ccids in (/api/ccid.txt)
     function generateCCID() {
 
         var d = new Date().getTime();
 
-        var ccid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var ccid = 'xxxxxxxx-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = (d + Math.random()*16)%16 | 0;
             d = Math.floor(d/16);
             return (c=='x' ? r : (r&0x3|0x8)).toString(16);
@@ -33,16 +28,6 @@ function load(query){
 
     // Set ccid
     let ccid = generateCCID();
-
-    // Define ip
-    let ip;
-
-    // Get ip (Really not necessary may be removed to save time and file size)
-    $.getJSON('//jsonip.com/?callback=?', function(data) {
-
-        ip = data.ip
-
-    });
 
     // Set server
     let server = new WebSocket('ws://' + query.server);
@@ -57,35 +42,13 @@ function load(query){
         let packet = {
 
             type : "identify",
-            ip : ip,
             ccid : ccid
 
         }
-
-        // Error handling, check if connection to server is good
-        if (server.readyState == "OPEN"){ // Connection is good, send
-
-            server.send(JSON.stringify(packet)) // Send packet
-            console.log('C1S1 | Sent IP and CCID to server, waiting for a resposne') // More logs
-
-        }else if (server.readyState == "CONNECTING"){ // Server and client connecting retry in 1 second
-
-            console.log('C1S1 | Retrying Identification in 1 second') // Logs
-            setTimeout(identify, 1000) // Retry 1000 miliseconds
-
-        }else if (server.readyState == "CLOSING"){ // Closing Connection, cant send
-
-            console.log('C1S1 | Can not identify, connection cloasing.') // Logs
-
-        }else if (server.readyState == "CLOSED"){ // Closed, cant send
-
-            console.log('C1S1 | Can not identify, connection closed') // Logs
-
-        }
+        server.send(JSON.stringify(packet)) // Send packet
+        console.log('C1S1 | Sent IP and CCID to server, waiting for a resposne') // More logs
 
     }
-
-    setTimeout(identify, 1000); // Run Identify
 
     server.onmessage = function(e){ // Handle Messages recived from server
 
@@ -167,6 +130,8 @@ function load(query){
         }
         // Set Interval to ping every second
         constPing = setInterval(function(){server.send(JSON.stringify({type : "ping", time : Date.now()}))}, 1000);
+        // Run identify
+        identify();
 
     }
 
