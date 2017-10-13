@@ -74,10 +74,6 @@ function load(query){
 
                 query.handle.packet(data.packet, server)
 
-            }else if (data.event == "AD"){// If appdata (Idk why this is needed buy will keep in there for now) handle it
-
-                query.handle.appdata(data.appdata, server)
-
             }else if (data.event == "redirect"){// Redirects, not finished, check (/api/redirect.txt)
 
                 if (query.event.redirect == "c1s1"){// Handle by c1s1
