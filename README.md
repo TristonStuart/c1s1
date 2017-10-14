@@ -7,7 +7,7 @@ By : **Triston Stuart**
 --------------------------------------------------------
 
 ## Status On Project :
-#### Client : 9% (ESTIMATE)
+#### Client : 20% (ESTIMATE)
 #### Server : 0% (DEFINITE) [lol]
 #### Client Version : (Alpha unfinished) 0.0.2
 #### Client Version : NOT STARTED
