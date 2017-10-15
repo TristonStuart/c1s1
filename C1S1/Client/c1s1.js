@@ -1,5 +1,5 @@
 // Notes :
-// Added some logging + A logging system. (No way to handle logs as of yet.)
+// Added some logging + A logging system.
 // Comments will be removed in official release
 // Do not use source code in applications, use obbfuscated version to help prevent tampering. (Also obfuscate your query)
 
@@ -8,6 +8,7 @@ function load(query){
 
     // Non-Important Variables (Help default processes)
     let isredirecting = false;
+    let redirectID = {};
 
 
     // Logging (FINALLY!) | Note : Logs wont be explained
@@ -32,9 +33,19 @@ function load(query){
 
     }
 
+
+    // Initialize Query Processes
+    if (query.initialize){
+
+        query.initialize();
+
+    }
+
+
+
     console.log('C1S1 | Client - Side Javascript to Server Communicator') // Yay! it works
-    console.log('C1S1 | Client Version : 1.0.3') // May add a version checker in the future
-    log('Client Loadded, Version : 1.0.3');
+    console.log('C1S1 | Client Version : 1.1.0') // May add a version checker in the future
+    log('Client Loadded, Version : 1.1.0');
 
     // Generate a ccid, read about the ccids in (/api/ccid.txt)
     function generateCCID() {
@@ -64,15 +75,33 @@ function load(query){
     // Send ip and ccid
     function identify(){
 
-        log('Identifying...');
-        // Basicly an object that the server can read
-        let packet = {
+        if (redirecting){
 
-            type : "identify",
-            ccid : ccid
+            log('Identifying with Redirection')
+
+            let packet = {
+
+                type : "redirect",
+                ccid : ccid,
+                id : redirectID
+
+            }
+
+            server.send(JSON.stringify(packet))
+
+        }else {
+
+            log('Identifying...');
+            // Basicly an object that the server can read
+            let packet = {
+
+                type : "identify",
+                ccid : ccid
+
+            }
+            server.send(JSON.stringify(packet)) // Send packet
 
         }
-        server.send(JSON.stringify(packet)) // Send packet
 
     }
 
@@ -108,22 +137,22 @@ function load(query){
 
             }else if (data.event == "redirect"){// Redirects, not finished, check (/api/redirect.txt)
 
+                isredirecting = true;
+                redirectID = data.event.id;
+
                 if (query.event.redirect == "c1s1"){// Handle by c1s1
 
-                    isredirecting = true;
                     server.close();
                     server = new WebSocket("ws://" + data.redirect.to)
 
                 }else if (query.event.redirect == "c1s1 & query"){// Handle by c1s1 and query
 
-                    isredirecting = true;
                     query.handle.redirect(server, data.redirect)
                     server.close();
                     server = new WebSocket("ws://" + data.redirect.to)
 
                 }else if (query.event.redirect == "query"){// Handle by just query
 
-                    isredirecting = true;
                     query.handle.redirect(server, data.redirect)
 
                 }else {
@@ -168,6 +197,8 @@ function load(query){
         if (isredirecting){
 
             log('Disconnect issued as a redirect.')
+            clearInterval(constPing);
+            // Gives room for future improvements
 
         }else {
 
