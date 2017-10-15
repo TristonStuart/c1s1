@@ -44,8 +44,8 @@ function load(query){
 
 
     console.log('C1S1 | Client - Side Javascript to Server Communicator') // Yay! it works
-    console.log('C1S1 | Client Version : 1.1.0') // May add a version checker in the future
-    log('Client Loadded, Version : 1.1.0');
+    console.log('C1S1 | Client Version : 0.1.0') // May add a version checker in the future
+    log('Client Loadded, Version : 0.1.0');
 
     // Generate a ccid, read about the ccids in (/api/ccid.txt)
     function generateCCID() {
